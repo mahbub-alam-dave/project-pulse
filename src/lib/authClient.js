@@ -7,6 +7,7 @@ export async function login(email, password) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
+    credentials: 'include',
   });
 
   const data = await response.json();
@@ -33,7 +34,7 @@ export async function logout() {
 }
 
 export async function getCurrentUser() {
-  const response = await fetch('/api/auth/me', {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/my-data`, {
     cache: 'no-store',
   });
 
@@ -42,5 +43,6 @@ export async function getCurrentUser() {
   }
 
   const data = await response.json();
+  // console.log(data)
   return data.user;
 }

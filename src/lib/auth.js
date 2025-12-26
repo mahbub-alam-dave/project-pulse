@@ -1,29 +1,37 @@
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+import { jwtVerify } from 'jose';
+import { SignJWT } from 'jose';
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET;
 
 if (!JWT_SECRET) {
   throw new Error('Please define JWT_SECRET in .env.local');
 }
 
 // Generate JWT Token
-export function generateToken(userId, role) {
-  return jwt.sign(
-    { userId, role },
-    JWT_SECRET,
-    { expiresIn: '7d' } // Token expires in 7 days
-  );
+export async function generateToken(userId, role) {
+const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const token = await new SignJWT({ userId, role })
+    .setProtectedHeader({ alg: 'HS256' })       
+    .setIssuedAt()         
+    .setExpirationTime('7d')   
+    .sign(secret);
+
+  return token
 }
 
-// Verify JWT Token
-export function verifyToken(token) {
+
+export async function verifyToken(token) {
   try {
-    return jwt.verify(token, JWT_SECRET);
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const { payload } = await jwtVerify(token, secret);
+    return payload; // { userId, role, iat, exp }
   } catch (error) {
     return null;
   }
 }
+
 
 // Get current user from cookies
 export async function getCurrentUser() {

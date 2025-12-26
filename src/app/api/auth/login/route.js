@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import User from '@/models/User';
-import { generateToken } from '@/lib/auth';
+import { generateToken } from '../../../../lib/auth';
+import connectDB from '../../../../lib/mongodb';
+import User from '../../../../models/user';
+
 
 export async function POST(request) {
   try {
@@ -47,8 +48,7 @@ export async function POST(request) {
     }
 
     // Generate JWT token
-    const token = generateToken(user._id.toString(), user.role);
-
+    const token = await generateToken(user._id.toString(), user.role);
     // Create response
     const response = NextResponse.json(
       {

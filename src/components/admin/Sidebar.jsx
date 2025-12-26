@@ -9,9 +9,9 @@ import {
   AlertTriangle,
   LogOut 
 } from 'lucide-react';
-import { logout } from '@/lib/authClient';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { logout } from '../../lib/authClient';
 
 export default function Sidebar({ user }) {
   const pathname = usePathname();

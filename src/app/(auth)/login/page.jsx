@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { login } from '@/lib/authClient';
-import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
+
+
 import { LogIn } from 'lucide-react';
+import Input from '../../../components/ui/Input';
+import Button from '../../../components/ui/Button';
+import { login } from '../../../lib/authClient';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,8 +36,9 @@ export default function LoginPage() {
       
       // Redirect based on role
       const role = data.user.role;
+      console.log(role)
       router.push(`/${role}`);
-      router.refresh();
+      // router.refresh();
     } catch (err) {
       setError(err.message);
     } finally {
