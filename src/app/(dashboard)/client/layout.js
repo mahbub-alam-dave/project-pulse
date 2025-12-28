@@ -1,5 +1,5 @@
-import ClientSidebar from '@/components/client/Sidebar';
-import { getCurrentUser } from '../../lib/authClient';
+import ClientSidebar from '../../../components/client/Sidebar.jsx';
+import { getCurrentUser } from '../../../lib/authClient';
 
 export default async function ClientLayout({ children }) {
   const user = await getCurrentUser();
