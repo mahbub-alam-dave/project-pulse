@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import Risk from '@/models/Risk';
-import Project from '@/models/Project';
-import { requireAuth } from '@/lib/auth';
+import connectDB from '../../../lib/mongodb';
+import Risk from '../../../models/risk';
+import Project from '../../../models/project';
+import { requireAuth } from '../../../lib/auth';
 
 // GET all risks
 export async function GET(request) {
