@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Plus, Edit, Trash2, FolderKanban, TrendingUp, TrendingDown, AlertCircle } from 'lucide-react';
-import Button from '@/components/ui/Button';
-import Modal from '@/components/ui/Modal';
-import Input from '@/components/ui/Input';
-import Select from '@/components/ui/Select';
+import Button from '../../../../components/ui/Button';
+import Modal from '../../../../components/ui/Modal';
+import Input from '../../../../components/ui/Input';
+import Select from '../../../../components/ui/Select';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
