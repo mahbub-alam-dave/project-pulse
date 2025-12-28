@@ -5,23 +5,6 @@ import { getCurrentUser } from '../../../lib/authClient';
 
 export default async function AdminLayout({ children }) {
   const user = await getCurrentUser();
-  console.log(user)
-
-  // const token = await cookies().get('auth_token')?.value;
-
-  // if (!token) {
-  //   redirect('/login');
-  // }
-
-  // const decoded = verifyToken(token);
-
-  // if (!decoded) {
-  //   redirect('/login');
-  // }
-
-  // if (decoded.role !== 'admin') {
-  //   redirect(`/${decoded.role}`);
-  // }
 
 
   return (
