@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import Project from '@/models/Project';
-import User from '@/models/User';
-import { requireAuth } from '@/lib/auth';
+import connectDB from '../../../lib/mongodb';
+import Project from '../../../models/project';
+import User from '../../../models/user';
+import { requireAuth } from '../../../lib/auth';
+
 
 // GET all projects
 export async function GET(request) {
